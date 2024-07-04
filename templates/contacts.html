@@ -1,21 +1,101 @@
-<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contacts</title>
+    <title>{% block title %}Family Reunion{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ffd700, #ffec8b);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .navbar {
+            background-color: #343a40;
+            padding: 1rem;
+        }
+        .navbar a {
+            color: #fff;
+            margin-right: 1rem;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .navbar-nav .nav-item {
+            flex: 1;
+        }
+        .search-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .search-container input[type=text] {
+            padding: 5px;
+            font-size: 17px;
+            border: 1px solid #ddd;
+            width: 200px;
+            background: #f1f1f1;
+        }
+        .search-container button {
+            padding: 5px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid #2196F3;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background: #0b7dda;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-      <ul>
-        <li><a href="{{ url_for('index').capitalize() }}">Home</a></li>
-        <li><a href="{{ url_for('about').capitalize() }}">About</a></li>
-        <li><a href="{{ url_for('info').capitalize() }}">Info</a></li>
-        <li><a href="{{ url_for('news').capitalize() }}">News</a></li>
-        <li><a href="{{ url_for('contacts').capitalize() }}">Contacts</a></li>
-        <li><a href="{{ url_for('family_photos').capitalize() }}">Family Photos</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('info') }}">Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('news') }}">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+            </ul>
+            <div class="search-container">
+                <form action="{{ url_for('search') }}" class="form-inline my-2 my-lg-0" method="GET">
+                    <input class="form-control mr-sm-2" name="query" placeholder="Search..." type="text">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
     </nav>
+
     {% block content %}{% endblock %}
+         <h1> This is the Contact page </h1>
+    <div class="footer">
+        <p>&copy; 2024 Gipson Family Reunion</p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+{

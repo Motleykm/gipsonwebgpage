@@ -1,13 +1,11 @@
-import os
-
-from flask import Flask, request, render_template, send_from_directory, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///family_news.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'supersecretkey'
 
 db = SQLAlchemy(app)
 
@@ -26,6 +24,16 @@ class FamilyPhoto(db.Model):
     description = db.Column(db.String(200), nullable=True)
     file_path = db.Column(db.String(200), nullable=False)
     year = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(100), nullable=True)
+    state = db.Column(db.String(100), nullable=False)
+    message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 
@@ -52,6 +60,23 @@ def info():
 @app.route('/contacts')
 def contacts():
     return render_template('contacts.html')
+
+
+@app.route('/submit_contact', methods=['POST'])
+def submit_contact():
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    state = request.form['state']
+    message = request.form['message']
+
+    # Save to database
+    new_contact = Contact(name=name, email=email, phone=phone, state=state, message=message)
+    db.session.add(new_contact)
+    db.session.commit()
+
+    flash('Your message has been sent to your state representative!')
+    return redirect(url_for('contacts'))
 
 
 @app.route('/news')
@@ -147,7 +172,7 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
-@app.route('/familyphotos_main')
+@app.route('/family_photos_main')
 def family_photos_main():
     year_thumbnails = {}
     photos = FamilyPhoto.query.order_by(FamilyPhoto.year, FamilyPhoto.created_at).all()
@@ -155,6 +180,21 @@ def family_photos_main():
         if photo.year not in year_thumbnails:
             year_thumbnails[photo.year] = photo
     return render_template('family_photos.html', year_thumbnails=year_thumbnails)
+
+
+@app.route('/search')
+def search():
+    query = request.args.get('query', '').lower()
+    pages = {
+        'home': {'title': 'Home', 'endpoint': 'index'},
+        'about': {'title': 'About', 'endpoint': 'about'},
+        'info': {'title': 'Info', 'endpoint': 'info'},
+        'news': {'title': 'News', 'endpoint': 'news'},
+        'contacts': {'title': 'Contacts', 'endpoint': 'contacts'},
+        'family photos': {'title': 'Family Photos', 'endpoint': 'family_photos_main'}
+    }
+    results = [page for page_name, page in pages.items() if query in page_name]
+    return render_template('search_results.html', query=query, results=results)
 
 
 if __name__ == '__main__':

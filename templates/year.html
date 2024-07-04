@@ -14,6 +14,10 @@
         .navbar { background-color: #343a40; padding: 1rem; }
         .navbar a { color: #fff; margin-right: 1rem; text-decoration: none; }
         .navbar a:hover { text-decoration: underline; }
+        .navbar .search-container { margin-left: auto; }
+        .navbar .search-container input[type=text] { padding: 5px; font-size: 17px; border: 1px solid #ddd; width: 200px; background: #f1f1f1; }
+        .navbar .search-container button { padding: 5px; background: #2196F3; color: white; font-size: 17px; border: 1px solid #2196F3; cursor: pointer; }
+        .navbar .search-container button:hover { background: #0b7dda; }
         .container { margin-top: 2rem; }
         .intro { background-color: #ffffff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; text-align: center; }
         .intro h2 { margin-bottom: 1rem; }
@@ -29,13 +33,25 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('info') }}">Info</a>
-        <a href="{{ url_for('news') }}">News</a>
-        <a href="{{ url_for('contacts') }}">Contacts</a>
-        <a href="{{ url_for('family_photos_main') }}">Family Photos</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('info') }}">Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('news') }}">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+            </ul>
+            <div class="search-container">
+                <form action="{{ url_for('search') }}" class="form-inline" method="GET">
+                    <input class="form-control mr-sm-2" name="query" placeholder="Search..." type="text">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
     </nav>
 
     <div class="container">

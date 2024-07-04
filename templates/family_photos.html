@@ -31,6 +31,31 @@
             text-decoration: underline;
         }
 
+        .navbar .search-container {
+            margin-left: auto;
+        }
+
+        .navbar .search-container input[type=text] {
+            padding: 5px;
+            font-size: 17px;
+            border: 1px solid #ddd;
+            width: 200px;
+            background: #f1f1f1;
+        }
+
+        .navbar .search-container button {
+            padding: 5px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid #2196F3;
+            cursor: pointer;
+        }
+
+        .navbar .search-container button:hover {
+            background: #0b7dda;
+        }
+
         .container {
             margin-top: 2rem;
         }
@@ -92,13 +117,23 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('info') }}">Info</a>
-        <a href="{{ url_for('news') }}">News</a>
-        <a href="{{ url_for('contacts') }}">Contacts</a>
-        <a href="{{ url_for('family_photos_main') }}">Family Photos</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('info') }}">Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('news') }}">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+            </ul>
+            <div class="search-container">
+                <form action="{{ url_for('search') }}" class="form-inline" method="GET">
+                    <input class="form-control mr-sm-2" name="query" placeholder="Search..." type="text">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
@@ -116,7 +151,7 @@
 
         <h2>Family Photo Albums by Year</h2>
         <div class="album-container">
-            {% for year in range(1950, 2025, 2) %}
+            {% for year in range(1900, 2025, 2) %}
                 <div class="album-icon">
                     <a href="{{ url_for('year_page', year=year) }}">
                         <img alt="Album Icon" src="https://i.etsystatic.com/19543171/r/il/ffad1a/5589244563/il_1588xN.5589244563_3pk0.jpg">
