@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Share News</title>
+    <style>
+        body {
+            background-image: url("https://cdn.theatlantic.com/thumbor/In9t7xkQ3cQWCFktpCzjizcQ7Uw=/0x0:1500x844/976x549/media/img/mt/2024/01/newspaper_1/original.gif");
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 10px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #575757;
+        }
+
+        .content {
+            margin: 80px 20px;
+        }
+
+        .content h4, .content p, .content h2 {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #575757;
+        }
+
+        .news-posts {
+            margin-top: 20px;
+        }
+
+        .news-post {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .news-post img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+   <nav class="navbar">
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('info') }}">Info</a></li>
+        <li><a href="{{ url_for('news') }}">News</a></li>
+        <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+        <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+    </ul>
+</nav>
+
+
+    <div class="content">
+        <h4>Got Any News To Share?</h4>
+        <p>
+            Hello family, I'm sure there's a lot going on with the Gipson. We are also
+            introducing a new flash area that will allow us to share news such as
+            business updates, awards, graduations, promotions, marriages, and anything
+            else that we should be informed about.
+        </p>
+
+        <!-- Submission Form -->
+        <h2>Submit News</h2>
+        <form action="{{ url_for('upload_news') }}" enctype="multipart/form-data" id="newsForm" method="POST">
+            <label for="name">Your Name:</label><br />
+            <input id="name" name="name" required type="text" /><br /><br />
+            <label for="title">Title:</label><br />
+            <input id="title" name="title" required type="text" /><br /><br />
+            <label for="content">Content:</label><br />
+            <textarea cols="50" id="content" name="content" required rows="4"></textarea><br /><br />
+            <label for="file">Upload Image:</label><br />
+            <input id="file" name="file" type="file" /><br /><br />
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2>News Posts</h2>
+        <div class="news-posts">
+            {% for post in news_posts %}
+                <div class="news-post">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.content }}</p>
+                    <p>By: {{ post.name }}</p>
+                    {% if post.file_path %}
+                        <img alt="News Image" src="{{ url_for('uploaded_file', filename=post.file_path.split('/')[-1]) }}">
+                    {% endif %}
+                    <form action="{{ url_for('delete_news', news_id=post.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

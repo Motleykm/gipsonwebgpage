@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Family Photos from {{ year }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; font-family: Arial, sans-serif; color: #333; }
+        .navbar { background-color: #343a40; padding: 1rem; }
+        .navbar a { color: #fff; margin-right: 1rem; text-decoration: none; }
+        .navbar a:hover { text-decoration: underline; }
+        .container { margin-top: 2rem; }
+        .intro { background-color: #ffffff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; text-align: center; }
+        .intro h2 { margin-bottom: 1rem; }
+        .intro p { margin-bottom: 0; font-size: 1.1rem; }
+        .form-container { background-color: #ffffff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; }
+        .photo-gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+        .photo-item { position: relative; margin: 1rem; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); cursor: pointer; width: calc(25% - 2rem); }
+        .photo-item img { border-radius: 8px; width: 100%; height: auto; }
+        .delete-btn { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: block; width: 90%; }
+        .footer { background-color: #343a40; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; }
+        .modal-content img { width: 100%; }
+        .carousel-caption { background: rgba(0, 0, 0, 0.5); border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('info') }}">Info</a>
+        <a href="{{ url_for('news') }}">News</a>
+        <a href="{{ url_for('contacts') }}">Contacts</a>
+        <a href="{{ url_for('family_photos_main') }}">Family Photos</a>
+    </nav>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Family Photos from {{ year }}</h2>
+            <p>{{ event_detail }}</p>
+        </div>
+
+        <div class="form-container">
+            <h4>Upload New Photo</h4>
+            <form action="{{ url_for('upload_family_photo') }}" enctype="multipart/form-data" method="POST">
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input class="form-control" id="description" name="description" placeholder="Add a description (optional)" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="file">Upload Image:</label>
+                    <input class="form-control-file" id="file" name="file" required type="file">
+                </div>
+                <input name="year" type="hidden" value="{{ year }}">
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div class="photo-gallery">
+            {% for photo in photos %}
+                <div class="photo-item" data-slide-to="{{ loop.index0 }}" data-target="#photoModal" data-toggle="modal">
+                    <img alt="Family Photo" class="img-fluid" src="{{ url_for('uploaded_file', filename=photo.file_path.split('/')[-1]) }}">
+                    <form action="{{ url_for('delete_photo', photo_id=photo.id) }}" method="POST">
+                        <button class="btn btn-danger delete-btn" type="submit">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div aria-hidden="true" aria-labelledby="photoModalLabel" class="modal fade" id="photoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="photoModalLabel">Family Photo from {{ year }} - {{ event_detail }}</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
+                        <div class="carousel-inner">
+                            {% for photo in photos %}
+                                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                    <img alt="Family Photo" class="d-block w-100" src="{{ url_for('uploaded_file', filename=photo.file_path.split('/')[-1]) }}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Photo {{ loop.index }} of {{ photos|length }}</h5>
+                                        <p>{{ photo.description }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleIndicators" role="button">
+                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" data-slide="next" href="#carouselExampleIndicators" role="button">
+                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Gipson Family Reunion</p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $('#photoModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var slideTo = button.data('slide-to'); // Extract info from data-* attributes
+            $('#carouselExampleIndicators').carousel(slideTo); // Initialize carousel to show the correct item
+        });
+    </script>
+</body>
+</html>

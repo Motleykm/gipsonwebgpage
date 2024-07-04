@@ -1,0 +1,66 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en"><style>
+    .navbar {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        font-family: 'Pacifico', cursive; /* Change to a specific cursive font or 'cursive' generic */
+      }
+
+      .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #555;
+      }
+
+      .container {
+        margin-top: 60px;
+        padding: 20px;
+      }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Our Story </title>
+
+</head>
+<body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="{{ url_for('index').capitalize() }}">Home</a></li>
+        <li><a href="{{ url_for('about').capitalize() }}">About</a></li>
+        <li><a href="{{ url_for('info').capitalize() }}">Info</a></li>
+        <li><a href="{{ url_for('news').capitalize() }}">News</a></li>
+        <li><a href="{{ url_for('contacts').capitalize() }}">Contacts</a></li>
+        <li><a href="{{ url_for('family_photos').capitalize() }}">Family Photos</a></li>
+
+      </ul>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>

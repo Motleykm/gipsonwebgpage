@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Weekend Getaway Itinerary</title>
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      body {
+        background: url("https://via.placeholder.com/1920x1080/00008B/00008B") no-repeat center center fixed;
+        background-size: cover;
+        color: gold;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        font-family: 'Pacifico', cursive; /* Change to a specific cursive font or 'cursive' generic */
+      }
+
+      .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #555;
+      }
+
+      .container {
+        margin-top: 60px;
+        padding: 20px;
+      }
+
+      .introduction h1,
+      h2,
+      h3,
+      h1,
+      p,
+      a {
+        color: gold;
+      }
+
+      .pointing {
+        display: inline-block;
+        animation: pointing 1s infinite;
+      }
+
+      @keyframes pointing {
+        0% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(5px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      main {
+        padding-top: 100px; /* Adjust as needed based on navbar height */
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      section img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+    </style>
+</head>
+<body>
+    <header>
+      <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('info') }}">Info</a></li>
+        <li><a href="{{ url_for('news') }}">News</a></li>
+        <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+        <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+    </ul>
+    </header>
+    <main>
+      <div class="introduction">
+        <h1>Welcome to Our Cherished Family Reunion!</h1>
+        <p>
+          Get ready to create unforgettable memories with a weekend packed full
+          of activities for everyone. From the peaceful greens of Glasgow Park
+          to the lively beats of Saturday night live, we've arranged a variety
+          of events to ensure your days are filled with joy, laughter, and
+          camaraderie. Dive into the details below and prepare for an adventure
+          that will be talked about for years to come!
+        </p>
+      </div>
+      <h3>Calendar of Events:</h3>
+      <section id="day1">
+        <h2>Friday, August 2, 2024</h2>
+        <p>
+          <strong>Hotel Check-in:</strong> Check-in at Hilton-Christiana Hotel
+          starts at 4 PM. Don't forget to pick up your welcome t-shirt!
+        </p>
+        <p>T-shirt Pickup/Ice Cream Social: <em>5 PM - 9 PM</em></p>
+        <img
+          alt="King Guest Room"
+          src="https://www.hilton.com/im/en/ILGCHHF/5246720/king-guestroom-h.jpg?impolicy=crop&cw=4473&ch=2504&gravity=NorthWest&xposition=0&yposition=247&rw=768&rh=430"
+        />
+        <p>
+          Hotel Booking:
+          <a
+            href="https://www.hilton.com/en/hotels/ilgchhf-hilton-wilmington-christiana/"
+            target="_blank"
+            >Hilton Wilmington Christiana</a
+          >
+        </p>
+      </section>
+      <section id="day2">
+        <h2>Saturday, August 3, 2024</h2>
+        <p>
+          <strong>Family Day Picnic:</strong> Join us at Glasgow Park, Newark
+          DE. Festivities start at noon and will end around 4pm. There will be
+          fun activities to do such as:
+          <span style="color: gold"
+            >Basketball, Playground for the kids, Other fun activities for all
+            the family to enjoy</span
+          >.
+        </p>
+        <p>T-shirt Prices for Family Reunion:</p>
+        <p>
+          Adults: $20.00<br />
+          Kids: $10.00
+        </p>
+        <p>
+          All T-shirt money must be in by no later than July 5, 2024. We would
+          like everyone to wear white shorts along with the t-shirts.
+        </p>
+        <p>
+          For more details, visit the
+          <a
+            href="https://www.newcastlede.gov/facilities/facility/details/Glasgow-Regional-Park-51"
+            target="_blank"
+            >Glasgow Regional Park</a
+          >
+          website.
+        </p>
+        <h1>
+          Important Message: <span class="pointing">👉🏾</span> Must be Booked by
+          July 5, 2024!!!
+        </h1>
+        <img
+          alt="Glasgow Park"
+          src="https://media-cdn.tripadvisor.com/media/photo-s/13/d4/03/47/glasgow-park-picnic-pavilion.jpg"
+        />
+        <h1>Saturday Night :90s HipHop Party</h1>
+
+        <img
+          alt="90s Hip-Hop Party"
+          src="/Users/kamiarhmotley/Desktop/Beta Test/IMG_4912.PNG"
+        />
+
+        <p>
+          Come snap back to the 90s with a fun get-together on Saturday night
+          featuring R&B and Hip-hop music! The event starts at 6 PM and ends at
+          11:30 PM.
+        </p>
+        <p>
+          There’s also an exciting opportunity to walk away with special prizes.
+          Raffle tickets will be given upon arrival once paid for. Each raffle
+          ticket is only $1.50.
+        </p>
+        <p>
+          The more tickets you buy, the greater your chances of winning a prize!
+        </p>
+        <h1>90s Hip-hop Outfit Contest!</h1>
+        <p>
+          Show off your best 90s outfit! The winner will receive a special
+          prize.
+        </p>
+      </section>
+      <section id="day3">
+        <h2>Sunday, August 4, 2024</h2>
+        <p>
+          <strong>Church Service:</strong> Morning service will be held at the
+          local community church from 9 AM to 12 PM. A wonderful way to wrap up
+          our weekend of fellowship and fun. Apostle Edward Gipson will
+          preaching the word of God
+        </p>
+        <h2>Sunday Evening: Family Banquet 3:00-6:00 PM</h2>
+        <h1>Doors will open at 3 PM Sharp</h1>
+        <p>
+          Join us for a cherished tradition and a special program that marks the
+          conclusion of our family reunion. Come and enjoy an evening of
+          fellowship, delicious food, and heartwarming moments with loved ones.
+          We'll be celebrating various accomplishments and, most importantly,
+          honoring the memory of those who have passed. Don't miss this
+          opportunity to create lasting memories and strengthen family bonds. We
+          look forward to seeing you there!
+        </p>
+        <h1>
+          <span class="pointing">👉🏾</span> All monies must be paid by July 5,
+          2024. See your state representative for further details. (If you are
+          not attending the banquet, we ask that you pay $25 to cover picnic
+          food costs.)
+        </h1>
+        <p>
+          Ticket Prices:
+          <br />
+          Kids (12 and under): $38.00
+          <br />
+          Adults (12 and over): $75.00
+        </p>
+      </section>
+    </main>
+    <footer>
+      <!-- Footer content here -->
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
