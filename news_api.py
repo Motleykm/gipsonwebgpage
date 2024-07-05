@@ -1,5 +1,8 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+import os
+
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
