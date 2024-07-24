@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
@@ -8,8 +9,13 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///family_news.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'supersecretkey'
-
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'kmotley09@gmail.com'
+app.config['MAIL_PASSWORD'] = 'cprf swoh rnfo snhl'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 db = SQLAlchemy(app)
 
 
@@ -62,24 +68,59 @@ def info():
 
 @app.route('/contacts')
 def contacts():
+
     return render_template('contacts.html')
 
 
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
-    name = request.form['name']
-    email = request.form['email']
-    phone = request.form['phone']
-    state = request.form['state']
-    message = request.form['message']
+    try:
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        state = request.form.get('state')
+        message = request.form.get('message')
 
-    # Save to database
-    new_contact = Contact(name=name, email=email, phone=phone, state=state, message=message)
-    db.session.add(new_contact)
-    db.session.commit()
+        # Log the form data for debugging purposes
+        app.logger.info(f'Received contact form submission: {name}, {email}, {phone}, {state}, {message}')
 
-    flash('Your message has been sent to your state representative!')
-    return redirect(url_for('contacts'))
+        # Create the email message
+        msg = Message(
+            'Contact Form Submission',
+            sender=app.config['MAIL_USERNAME'],
+            recipients=[app.config['MAIL_USERNAME']]  # Send to your email
+        )
+        msg.html = f"""
+            <h3>Contact Form Submission</h3>
+            <p><strong>Name:</strong> {name}</p>
+            <p><strong>Email:</strong> {email}</p>
+            <p><strong>Phone:</strong> {phone}</p>
+            <p><strong>State:</strong> {state}</p>
+            <p><strong>Message:</strong> {message}</p>
+        """
+
+        # Send the email
+        mail.send(msg)
+
+        # Send a confirmation email to the user
+        confirmation_msg = Message(
+            'Thank you for contacting us!',
+            sender=app.config['MAIL_USERNAME'],
+            recipients=[email]
+        )
+        confirmation_msg.html = f"""
+            <h3>Thank you for contacting us!</h3>
+            <p>Dear {name},</p>
+            <p>Thank you for reaching out. We have received your message and will get back to you shortly.</p>
+            <p><strong>Your Message:</strong></p>
+            <p>{message}</p>
+        """
+        mail.send(confirmation_msg)
+
+        return 'Your message has been sent successfully!'
+    except Exception as e:
+        app.logger.error(f'Error sending contact form submission: {str(e)}')
+        return 'An error occurred while processing your request.', 500
 
 
 @app.route('/news')
@@ -133,9 +174,33 @@ def upload_family_photo():
 @app.route('/year/<int:year>', methods=['GET', 'POST'])
 def year_page(year):
     event_details = {
+        2024:'Newark, Delaware August 2-4,2024',
         2022: 'Fort Lauderdale, Florida, August 5-7, 2022',
         2020: 'Example Location, Example Date',
+        2018: 'Perth Amboy,New Jersey August 2-4,2018',
         2016: 'Atlanta, Georgia, August 4-7, 2016',
+        2014: 'BridgePort, Connecticut, August 1-3, 2014',
+        2012:'Reunion,',
+        2010:'Reunion',
+        2008: 'Reunion',
+        2006: 'Reunion',
+        2004: 'Reunion',
+        2002: 'BridgePort,Connecticut, August 2002',
+        2000: 'Atlanta, Georgia, Ausgust 2000',
+        1998: 'Fort Lauderdale ,Florida, August 1998',
+        1996: 'Perth Amboy ,New Jersey, August 1996',
+        1994: 'Cadwell,Georgia, August 1994',
+        1992: 'Philadelphia , Pennsylvania , August 1992',
+        1990: 'Fort Lauderdale ,Florida, August 1990',
+        1988:'BridgePort,Connecticut, August 1988',
+        1986:'Cadwell,Georgia ,August 1986 ',
+        1984:'Fort Lauderdale ,Florida, August 1984',
+        1982:'Cadwell,Georgia, August 1982',
+        1980: 'Wilmington, Delaware ,August 1980',
+        1975:'Cadwell,Georgia ,August 1975 ',
+        1974:'Cadwell,Georgia ,August 1986'
+
+
     }
     photos = FamilyPhoto.query.filter_by(year=year).order_by(FamilyPhoto.created_at.desc()).all()
     event_detail = event_details.get(year, 'Event details not available')

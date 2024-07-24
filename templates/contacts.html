@@ -1,11 +1,252 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Your State Representative</title>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            z-index: 1000;
+        }
 
-{% block title %}Contact Your State Representative{% endblock %}
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-{% block content %}
+        .navbar ul li {
+            margin-right: 10px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #575757;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        .contact-form-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
+
+        .contact-form-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        #toggle3D {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        #toggle3D:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyCNVgkvNOWw6zo83X2rRxHO8cBfqBDtI&callback=initMap"></script>
+    <script>
+        let map;
+        let is3D = false;
+
+        function initMap() {
+            var mapOptions = {
+                center: { lat: 37.0902, lng: -95.7129 }, // Centered on the US
+                zoom: 4,
+                mapTypeId: 'satellite',
+                tilt: 0,
+                heading: 0
+            };
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+            // Adding markers for specific locations
+            var locations = [
+                { lat: 39.6685564, lng: -75.586189, title: 'New Castle, DE', email: 'jcat5050@gmail.com', rep: 'Caroline Motley', phone: '302-521-4120', city: 'New Castle' },
+                { lat: 34.0522, lng: -118.2437, title: 'Los Angeles, CA', rep: 'Rep. Jane Smith', phone: '987-654-3210', city: 'Los Angeles' },
+                { lat: 41.8781, lng: -87.6298, title: 'Chicago, IL', rep: 'Rep. Michael Brown', phone: '555-555-5555', city: 'Chicago' },
+                { lat: 29.7604, lng: -95.3698, title: 'Houston, TX', rep: 'Rep. Susan Johnson', phone: '444-444-4444', city: 'Houston' },
+                { lat: 33.7490, lng: -84.3880, title: 'Atlanta, GA', rep: 'Rep. Chris Lee', phone: '333-333-3333', city: 'Atlanta' }
+            ];
+
+            locations.forEach(function (location) {
+                addMarker(location, map);
+            });
+        }
+
+        function addMarker(location, map) {
+            console.log('Adding marker for:', location.title);
+            var marker = new google.maps.Marker({
+                position: { lat: location.lat, lng: location.lng },
+                map: map,
+                title: location.title
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: `
+                    <div class="rep-info">
+                        <h3>${location.rep}</h3>
+                        <p><strong>Phone:</strong> ${location.phone}</p>
+                        <p id="weather-${location.city}">Fetching weather...</p>
+                        <img src="rep_image_url" alt="Representative Image" style="width:100px;height:auto;">
+                    </div>
+                `
+            });
+
+            marker.addListener('click', function () {
+                fetchWeather(location.city);
+                infowindow.open(map, marker);
+            });
+        }
+
+        function fetchWeather(city) {
+            var apiKey = 'YOUR_WEATHER_API_KEY';
+            var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Weather data for', city, data);
+                    var weatherElement = document.getElementById(`weather-${city}`);
+                    weatherElement.innerHTML = `<strong>Weather:</strong> ${data.weather[0].description}, ${data.main.temp}°F`;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        }
+
+        function toggle3D() {
+            if (is3D) {
+                map.setTilt(0);
+                map.setHeading(0);
+            } else {
+                map.setTilt(45);
+                map.setHeading(90);
+            }
+            is3D = !is3D;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("openContactForm").onclick = function () {
+                document.getElementById("contactForm").style.display = "block";
+            }
+
+            document.getElementById("closeContactForm").onclick = function () {
+                document.getElementById("contactForm").style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == document.getElementById("contactForm")) {
+                    document.getElementById("contactForm").style.display = "none";
+                }
+            }
+
+            document.getElementById("toggle3D").onclick = function () {
+                toggle3D();
+            }
+
+            // Initialize the map
+            initMap();
+        });
+    </script>
+</head>
+<body>
+<nav class="navbar">
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('info') }}">Info</a></li>
+        <li><a href="{{ url_for('news') }}">News</a></li>
+        <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+        <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+    </ul>
+</nav>
+
 <div class="container">
     <h1 class="text-center mt-5">Contact Your State Representative</h1>
-    <button class="btn btn-primary" id="openContactForm">Open Contact Form</button>
+    <div id="map"></div>
+    <button class="btn btn-primary mt-3" id="openContactForm">Open Contact Form</button>
+    <button id="toggle3D">Toggle 3D View</button>
 
     <div class="contact-form-overlay" id="contactForm">
         <div class="contact-form-content">
@@ -38,64 +279,11 @@
     </div>
 </div>
 
-<style>
-    .contact-form-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 9999;
-    }
-    .contact-form-content {
-        background-color: white;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 40%;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        animation: slideIn 0.5s;
-    }
-    @keyframes slideIn {
-        from {
-            transform: translateY(-50%);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-
-<script>
-    document.getElementById("openContactForm").onclick = function() {
-        document.getElementById("contactForm").style.display = "block";
-    }
-
-    document.getElementById("closeContactForm").onclick = function() {
-        document.getElementById("contactForm").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("contactForm")) {
-            document.getElementById("contactForm").style.display = "none";
-        }
-    }
-</script>
-{% endblock %}
+<p class="intro">
+    Welcome to the contact page for your state representative. Here, you can find the contact information and
+    reach out to your representative directly. Use the map below to locate your representative's office and
+    the contact form to send a message. We encourage you to voice your concerns, ask questions, or provide
+    feedback on any issues that matter to you.
+</p>
+</body>
+</html>
