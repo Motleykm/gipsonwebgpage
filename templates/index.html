@@ -81,27 +81,27 @@
 <body>
     <div class="navbar-container">
         <div class="navbar" id="navbar">
-            <a class="nav-item" href="{{ url_for('index') }}" style="--i:0">
+            <a class="nav-item" href="/" style="--i:0">
                 <img alt="Home" src="https://via.placeholder.com/40">
                 <span>Home</span>
             </a>
-            <a class="nav-item" href="{{ url_for('about') }}" style="--i:1">
+            <a class="nav-item" href="/about" style="--i:1">
                 <img alt="About" src="https://via.placeholder.com/40">
                 <span>About</span>
             </a>
-            <a class="nav-item" href="{{ url_for('info') }}" style="--i:2">
+            <a class="nav-item" href="/info" style="--i:2">
                 <img alt="Info" src="https://via.placeholder.com/40">
                 <span>Info</span>
             </a>
-            <a class="nav-item" href="{{ url_for('contacts') }}" style="--i:3">
+            <a class="nav-item" href="/contacts" style="--i:3">
                 <img alt="Contacts" src="https://via.placeholder.com/40">
                 <span>Contacts</span>
             </a>
-            <a class="nav-item" href="{{ url_for('family_photos_main') }}" style="--i:4">
+            <a class="nav-item" href="/family_photos_main" style="--i:4">
                 <img alt="Family Photos" src="https://via.placeholder.com/40">
                 <span>Family Photos</span>
             </a>
-            <a class="nav-item" href="{{ url_for('news') }}" style="--i:5">
+            <a class="nav-item" href="/news" style="--i:5">
                 <img alt="News" src="https://via.placeholder.com/40">
                 <span>News</span>
             </a>
@@ -110,7 +110,7 @@
     <button id="toggle-button">Toggle Menu</button>
 
     <script>
-        document.getElementById('toggle-button').addEventListener('click', function() {
+       document.getElementById('toggle-button').addEventListener('click', function() {
             const navbar = document.getElementById('navbar');
 
             if (navbar.style.transform === 'scale(1)') {
