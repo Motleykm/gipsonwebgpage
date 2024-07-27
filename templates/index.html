@@ -76,16 +76,6 @@
             cursor: pointer;
             z-index: 1000;
         }
-
-        /* Spinning animation */
-        .spin {
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -122,14 +112,10 @@
     <script>
         document.getElementById('toggle-button').addEventListener('click', function() {
             const navbar = document.getElementById('navbar');
-            if (navbar.style.transform.includes('scale(1)')) {
-                navbar.classList.remove('spin');
-                navbar.style.transform = 'scale(0)';
-            } else {
-                navbar.classList.add('spin');
-                navbar.style.transform = 'scale(1)';
-            }
+            navbar.style.transform = navbar.style.transform === 'scale(1)' ? 'scale(0)' : 'scale(1)';
         });
     </script>
 </body>
 </html>
+
+
