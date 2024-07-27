@@ -1,50 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Weekend Getaway Itinerary</title>
-    <link href="style.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      body {
-        background: url("https://via.placeholder.com/1920x1080/00008B/00008B")
-          no-repeat center center fixed;
-        background-size: cover;
-        color: gold;
-        font-family: Arial, sans-serif;
-      }
+        body {
+            background: url("https://via.placeholder.com/1920x1080/00008B/00008B") no-repeat center center fixed;
+            background-size: cover;
+            color: gold;
+            font-family: Arial, sans-serif;
+        }
 
-     .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .navbar {
             background-color: #333;
-            padding: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-            z-index: 1000;
         }
 
-        .navbar ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
+        .navbar-nav .nav-link {
+            color: white !important;
         }
 
-        .navbar ul li {
-            margin-right: 10px;
-        }
-
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            display: block;
-        }
-
-        .navbar ul li a:hover {
+        .navbar-nav .nav-link:hover {
             background-color: #575757;
         }
 
@@ -52,8 +30,9 @@
             margin: 80px 20px;
         }
 
-        .content h4, .content p, .content h2 {
-            background: rgba(255, 255, 255, 0.8);
+        /* Remove background for the content, headings, and paragraphs */
+        .content h4, .content p, .content h2, .content h1, .content h3 {
+            background: none;
             padding: 10px;
             border-radius: 8px;
         }
@@ -106,212 +85,137 @@
             max-width: 100%;
             height: auto;
         }
-
     </style>
-  </head>
-  <body>
-    <header>
-<ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('info') }}">Info</a></li>
-            <li><a href="{{ url_for('news') }}">News</a></li>
-            <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
-            <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
-        </ul>
-    </header>
-    <main>
-      <div class="introduction">
-        <h1>Welcome to Our Cherished Family Reunion!</h1>
-        <p>
-          Get ready to create unforgettable memories with a weekend packed full
-          of activities for everyone. From the peaceful greens of Glasgow Park
-          to the lively beats of Saturday night live, we've arranged a variety
-          of events to ensure your days are filled with joy, laughter, and
-          camaraderie. Dive into the details below and prepare for an adventure
-          that will be talked about for years to come!
-        </p>
-      </div>
-      <h3>Calendar of Events:</h3>
-      <section id="day1">
-        <h2>Friday, August 2, 2024</h2>
-        <p>
-          <strong>Hotel Check-in:</strong> Check-in at Hilton-Christiana Hotel
-          starts at 4 PM. Don't forget to pick up your welcome t-shirt!
-        </p>
-        <p>T-shirt Pickup/Ice Cream Social: <em>5 PM - 9 PM</em></p>
-        <img
-          src="https://www.hilton.com/im/en/ILGCHHF/5246720/king-guestroom-h.jpg?impolicy=crop&cw=4473&ch=2504&gravity=NorthWest&xposition=0&yposition=247&rw=768&rh=430"
-          alt="King Guest Room"
-        />
-        <p>
-          Hotel Booking:
-          <a
-            href="https://www.hilton.com/en/hotels/ilgchhf-hilton-wilmington-christiana/"
-            target="_blank"
-            >Hilton Wilmington Christiana</a
-          >
-        </p>
-        <div class="container">
-    <h1>Ways of Travel in Delaware</h1>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Family Reunion</a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('info') }}">Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('news') }}">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="travel-option">
-        <h2>Philadelphia International Airport (PHL)</h2>
-        <p><strong>Location:</strong> Approximately 30 miles north of Wilmington, DE, in Philadelphia, PA.</p>
-        <p><strong>Description:</strong> Philadelphia International Airport is the primary airport serving the Greater Philadelphia area. It offers a wide range of domestic and international flights, making it a convenient option for Delaware travelers.</p>
-        <p><strong>Facilities:</strong> The airport features multiple terminals, a variety of dining and shopping options, car rental services, and shuttle services to Delaware.</p>
-        <p><strong>Transportation to Delaware:</strong> Travelers can use shuttle services, rental cars, or take SEPTA Regional Rail to Wilmington, DE.</p>
-        <p><strong>Website:</strong> <a href="https://www.phl.org" target="_blank">Philadelphia International Airport</a></p>
-        <img alt="Philadelphia International Airport" src="https://www.phl.org/Assets/PHL/Content/Images/Visit%20Philadelphia/04_pope_concourse_view.jpg">
-    </div>
-
-    <div class="travel-option">
-        <h2>Baltimore/Washington International Thurgood Marshall Airport (BWI)</h2>
-        <p><strong>Location:</strong> Approximately 70 miles southwest of Wilmington, DE, in Baltimore, MD.</p>
-        <p><strong>Description:</strong> BWI is a major hub for domestic flights and offers some international services. It is known for its convenient access to both Baltimore and Washington, D.C.</p>
-        <p><strong>Facilities:</strong> BWI has extensive parking, rental car services, numerous dining and shopping options, and free Wi-Fi.</p>
-        <p><strong>Transportation to Delaware:</strong> Options include rental cars, shuttle services, or taking the MARC train to connect with Amtrak services to Wilmington.</p>
-        <p><strong>Website:</strong> <a href="https://www.bwiairport.com" target="_blank">Baltimore/Washington International Thurgood Marshall Airport</a></p>
-        <img alt="BWI Airport" src="https://www.bwiairport.com/files/images/home/BWI_Aerial.jpg">
-    </div>
-
-    <div class="travel-option">
-        <h2>New Castle Airport (ILG)</h2>
-        <p><strong>Location:</strong> Located in Wilmington, DE.</p>
-        <p><strong>Description:</strong> New Castle Airport is a smaller regional airport that primarily serves private and corporate aircraft. It occasionally offers commercial flights.</p>
-        <p><strong>Facilities:</strong> The airport has limited passenger amenities but provides essential services such as car rentals and parking.</p>
-        <p><strong>Transportation:</strong> Travelers can rent a car or use local taxi and ride-sharing services to reach their destination.</p>
-        <p><strong>Website:</strong> <a href="https://flyilg.com/" target="_blank">New Castle Airport</a></p>
-        <img alt="New Castle Airport" src="https://www.newcastleairportilg.com/sites/all/themes/newcastleairport/images/terminal.jpg">
-    </div>
-
-    <div class="travel-option">
-        <h2>Amtrak Train Station</h2>
-        <p><strong>Location:</strong> Wilmington, DE.</p>
-        <p><strong>Description:</strong> The Wilmington Amtrak Station is a key hub for train travel in Delaware, offering connections to major cities along the Northeast Corridor, including New York, Philadelphia, Baltimore, and Washington, D.C.</p>
-        <p><strong>Facilities:</strong> The station features a ticket office, waiting areas, restrooms, and limited dining options. It also provides parking facilities and car rental services nearby.</p>
-        <p><strong>Transportation:</strong> The station is easily accessible by local transit, taxi, and ride-sharing services. Passengers can also connect to SEPTA Regional Rail for local travel.</p>
-        <p><strong>Website:</strong> <a href="https://www.amtrak.com/stations/wil.html" target="_blank">Amtrak Wilmington Station</a></p>
-        <img alt="Amtrak Wilmington Station" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Wilmington_station_2016.jpg">
-    </div>
-
-    <div class="travel-option">
-        <h2>DART First State</h2>
-        <p><strong>Description:</strong> DART (Delaware Transit Corporation) operates bus services throughout the state, providing an affordable and convenient option for local travel.</p>
-        <p><strong>Services:</strong> DART offers fixed-route buses, paratransit services, and seasonal beach bus services.</p>
-        <p><strong>Connections:</strong> DART buses connect to key locations such as the Wilmington Amtrak Station, shopping centers, hospitals, and other points of interest.</p>
-        <p><strong>Website:</strong> <a href="https://www.dartfirststate.com" target="_blank">DART First State</a></p>
-        <img alt="DART First State" src="https://www.dartfirststate.com/information/programs/images/5000_bus.jpg">
-    </div>
-
-    <div class="travel-option">
-        <h2>SEPTA Regional Rail</h2>
-        <p><strong>Description:</strong> SEPTA (Southeastern Pennsylvania Transportation Authority) operates Regional Rail services that extend into Delaware.</p>
-        <p><strong>Routes:</strong> The Wilmington/Newark Line connects Philadelphia to Wilmington and Newark, DE.</p>
-        <p><strong>Transportation:</strong> This service provides a reliable option for commuters and travelers between Delaware and Philadelphia, with stops at multiple stations in Delaware.</p>
-        <p><strong>Website:</strong> <a href="https://www.septa.org" target="_blank">SEPTA Regional Rail</a></p>
-        <img alt="SEPTA Regional Rail" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/SEPTA_Silverliner_V_701_2011.jpg">
-    </div>
-
-</div>
-      </section>
-      <section id="day2">
-        <h2>Saturday, August 3, 2024</h2>
-        <p>
-          <strong>Family Day Picnic:</strong> Join us at Glasgow Park, Newark
-          DE. Festivities start at noon and will end around 4pm. There will be
-          fun activities to do such as:
-          <span style="color: gold"
-            >Basketball, Playground for the kids, Other fun activities for all
-            the family to enjoy</span
-          >.
-        </p>
-        <p>T-shirt Prices for Family Reunion:</p>
-        <p>
-          Adults: $20.00<br />
-          Kids: $10.00
-        </p>
-        <p>
-          All T-shirt money must be in by no later than July 5, 2024. We would
-          like everyone to wear white shorts along with the t-shirts.
-        </p>
-        <p>
-          For more details, visit the
-          <a
-            href="https://www.newcastlede.gov/facilities/facility/details/Glasgow-Regional-Park-51"
-            target="_blank"
-            >Glasgow Regional Park</a
-          >
-          website.
-        </p>
-        <h1>
-          Important Message: <span class="pointing">👉🏾</span> Must be Booked by
-          July 5, 2024!!!
-        </h1>
-        <img
-          src="https://media-cdn.tripadvisor.com/media/photo-s/13/d4/03/47/glasgow-park-picnic-pavilion.jpg"
-          alt="Glasgow Park"
-        />
-        <h1>Saturday Night :90s HipHop Party</h1>
-
-        <img alt="DART First State" src="https://mail.google.com/mail/u/0?ui=2&ik=ef9e50ef91&attid=0.1&permmsgid=msg-a:r2240289109222331617&th=1904c3571d4297db&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ9ttMDM-fnv7My_kM7uQmPpTfUPlh6U3_OgheAS1x4ay4G7ZDZSVGYIPIg6dSYaUYmJX6NbMzNWdbZYqeKWxdbr_L48IsDdI3TSwfq14cpaQwQDahxJroayfUY&disp=emb&realattid=1DA8CBFD-9C67-4430-ABB1-C34C57B6599E">
-
-        <p>
-          Come snap back to the 90s with a fun get-together on Saturday night
-          featuring R&B and Hip-hop music! The event starts at 6 PM and ends at
-          11:30 PM.
-        </p>
-        <p>
-          There’s also an exciting opportunity to walk away with special prizes.
-          Raffle tickets will be given upon arrival once paid for. Each raffle
-          ticket is only $1.50.
-        </p>
-        <p>
-          The more tickets you buy, the greater your chances of winning a prize!
-        </p>
-        <h1>90s Hip-hop Outfit Contest!</h1>
-        <p>
-          Show off your best 90s outfit! The winner will receive a special
-          prize.
-        </p>
-      </section>
-      <section id="day3">
-        <h2>Sunday, August 4, 2024</h2>
-        <p>
-          <strong>Church Service:</strong> Morning service will be held at the
-          local community church from 9 AM to 12 PM. A wonderful way to wrap up
-          our weekend of fellowship and fun. Apostle Edward Gipson will
-          preaching the word of God
-        </p>
-        <h2>Sunday Evening: Family Banquet 3:00-6:00 PM</h2>
-        <h1>Doors will open at 3 PM Sharp</h1>
-        <p>
-          Join us for a cherished tradition and a special program that marks the
-          conclusion of our family reunion. Come and enjoy an evening of
-          fellowship, delicious food, and heartwarming moments with loved ones.
-          We'll be celebrating various accomplishments and, most importantly,
-          honoring the memory of those who have passed. Don't miss this
-          opportunity to create lasting memories and strengthen family bonds. We
-          look forward to seeing you there!
-        </p>
-        <h1>
-          <span class="pointing">👉🏾</span> All monies must be paid by July 5,
-          2024. See your state representative for further details. (If you are
-          not attending the banquet, we ask that you pay $25 to cover picnic
-          food costs.)
-        </h1>
-        <p>
-          Ticket Prices:
-          <br />
-          Kids (12 and under): $38.00
-          <br />
-          Adults (12 and over): $75.00
-        </p>
-      </section>
+    <main class="content">
+        <div class="introduction">
+            <h1>Welcome to Our Cherished Family Reunion!</h1>
+            <p>
+                Get ready to create unforgettable memories with a weekend packed full of activities for everyone. From the peaceful greens of Glasgow Park to the lively beats of Saturday night live, we've arranged a variety of events to ensure your days are filled with joy, laughter, and camaraderie. Dive into the details below and prepare for an adventure that will be talked about for years to come!
+            </p>
+        </div>
+        <h3>Calendar of Events:</h3>
+        <section id="day1">
+            <h2>Friday, August 2, 2024</h2>
+            <p>
+                <strong>Hotel Check-in:</strong> Check-in at Hilton-Christiana Hotel starts at 4 PM. Don't forget to pick up your welcome t-shirt!
+            </p>
+            <p>T-shirt Pickup/Ice Cream Social: <em>5 PM - 9 PM</em></p>
+            <img alt="King Guest Room" class="img-fluid" src="https://www.hilton.com/im/en/ILGCHHF/5246720/king-guestroom-h.jpg?impolicy=crop&cw=4473&ch=2504&gravity=NorthWest&xposition=0&yposition=247&rw=768&rh=430"/>
+            <p>
+                Hotel Booking:
+                <a href="https://www.hilton.com/en/hotels/ilgchhf-hilton-wilmington-christiana/" target="_blank">Hilton Wilmington Christiana</a>
+            </p>
+            <div class="container">
+                <h1>Ways of Travel in Delaware</h1>
+                <div class="travel-option">
+                    <h2>Philadelphia International Airport (PHL)</h2>
+                    <p><strong>Location:</strong> Approximately 30 miles north of Wilmington, DE, in Philadelphia, PA.</p>
+                    <p><strong>Description:</strong> Philadelphia International Airport is the primary airport serving the Greater Philadelphia area. It offers a wide range of domestic and international flights, making it a convenient option for Delaware travelers.</p>
+                    <p><strong>Facilities:</strong> The airport features multiple terminals, a variety of dining and shopping options, car rental services, and shuttle services to Delaware.</p>
+                    <p><strong>Transportation to Delaware:</strong> Travelers can use shuttle services, rental cars, or take SEPTA Regional Rail to Wilmington, DE.</p>
+                    <p><strong>Website:</strong> <a href="https://www.phl.org" target="_blank">Philadelphia International Airport</a></p>
+                    <img alt="Philadelphia International Airport" class="img-fluid" src="https://www.phl.org/Assets/PHL/Content/Images/Visit%20Philadelphia/04_pope_concourse_view.jpg">
+                </div>
+                <!-- Repeat similar structure for other travel options -->
+                <div class="travel-option">
+                    <h2>Baltimore/Washington International Thurgood Marshall Airport (BWI)</h2>
+                    <p><strong>Location:</strong> Approximately 70 miles southwest of Wilmington, DE, in Baltimore, MD.</p>
+                    <p><strong>Description:</strong> BWI is a major hub for domestic flights and offers some international services. It is known for its convenient access to both Baltimore and Washington, D.C.</p>
+                    <p><strong>Facilities:</strong> BWI has extensive parking, rental car services, numerous dining and shopping options, and free Wi-Fi.</p>
+                    <p><strong>Transportation to Delaware:</strong> Options include rental cars, shuttle services, or taking the MARC train to connect with Amtrak services to Wilmington.</p>
+                    <p><strong>Website:</strong> <a href="https://www.bwiairport.com" target="_blank">Baltimore/Washington International Thurgood Marshall Airport</a></p>
+                    <img alt="BWI Airport" class="img-fluid" src="https://www.bwiairport.com/files/images/home/BWI_Aerial.jpg">
+                </div>
+                <div class="travel-option">
+                    <h2>New Castle Airport (ILG)</h2>
+                    <p><strong>Location:</strong> Located in Wilmington, DE.</p>
+                    <p><strong>Description:</strong> New Castle Airport is a smaller regional airport that primarily serves private and corporate aircraft. It occasionally offers commercial flights.</p>
+                    <p><strong>Facilities:</strong> The airport has limited passenger amenities but provides essential services such as car rentals and parking.</p>
+                    <p><strong>Transportation:</strong> Travelers can rent a car or use local taxi and ride-sharing services to reach their destination.</p>
+                    <p><strong>Website:</strong> <a href="https://flyilg.com/" target="_blank">New Castle Airport</a></p>
+                    <img alt="New Castle Airport" class="img-fluid" src="https://www.newcastleairportilg.com/sites/all/themes/newcastleairport/images/terminal.jpg">
+                </div>
+                <div class="travel-option">
+                    <h2>Amtrak Train Station</h2>
+                    <p><strong>Location:</strong> Wilmington, DE.</p>
+                    <p><strong>Description:</strong> The Wilmington Amtrak Station is a key hub for train travel in Delaware, offering connections to major cities along the Northeast Corridor, including New York, Philadelphia, Baltimore, and Washington, D.C.</p>
+                    <p><strong>Facilities:</strong> The station features a ticket office, waiting areas, restrooms, and limited dining options. It also provides parking facilities and car rental services nearby.</p>
+                    <p><strong>Transportation:</strong> The station is easily accessible by local transit, taxi, and ride-sharing services. Passengers can also connect to SEPTA Regional Rail for local travel.</p>
+                    <p><strong>Website:</strong> <a href="https://www.amtrak.com/stations/wil.html" target="_blank">Amtrak Wilmington Station</a></p>
+                    <img alt="Amtrak Wilmington Station" class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Wilmington_station_2016.jpg">
+                </div>
+                <div class="travel-option">
+                    <h2>DART First State</h2>
+                    <p><strong>Description:</strong> DART (Delaware Transit Corporation) operates bus services throughout the state, providing an affordable and convenient option for local travel.</p>
+                    <p><strong>Services:</strong> DART offers fixed-route buses, paratransit services, and seasonal beach bus services.</p>
+                    <p><strong>Connections:</strong> DART buses connect to key locations such as the Wilmington Amtrak Station, shopping centers, hospitals, and other points of interest.</p>
+                    <p><strong>Website:</strong> <a href="https://www.dartfirststate.com" target="_blank">DART First State</a></p>
+                    <img alt="DART First State" class="img-fluid" src="https://www.dartfirststate.com/information/programs/images/5000_bus.jpg">
+                </div>
+                <div class="travel-option">
+                    <h2>SEPTA Regional Rail</h2>
+                    <p><strong>Description:</strong> SEPTA (Southeastern Pennsylvania Transportation Authority) operates Regional Rail services that extend into Delaware.</p>
+                    <p><strong>Routes:</strong> The Wilmington/Newark Line connects Philadelphia to Wilmington and Newark, DE.</p>
+                    <p><strong>Transportation:</strong> This service provides a reliable option for commuters and travelers between Delaware and Philadelphia, with stops at multiple stations in Delaware.</p>
+                    <p><strong>Website:</strong> <a href="https://www.septa.org" target="_blank">SEPTA Regional Rail</a></p>
+                    <img alt="SEPTA Regional Rail" class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/SEPTA_Silverliner_V_701_2011.jpg">
+                </div>
+            </div>
+        </section>
+        <section id="day2">
+            <h2>Saturday, August 3, 2024</h2>
+            <p>
+                <strong>Family Day Picnic:</strong> Join us at Glasgow Park, Newark DE. Festivities start at noon and will end around 4pm. There will be fun activities to do such as: <span style="color: gold">Basketball, Playground for the kids, Other fun activities for all the family to enjoy</span>.
+            </p>
+            <p>T-shirt Prices for Family Reunion:</p>
+            <p>Adults: $20.00<br />Kids: $10.00</p>
+            <p>All T-shirt money must be in by no later than July 5, 2024. We would like everyone to wear white shorts along with the t-shirts.</p>
+            <p>For more details, visit the <a href="https://www.newcastlede.gov/facilities/facility/details/Glasgow-Regional-Park-51" target="_blank">Glasgow Regional Park</a> website.</p>
+            <h1>Important Message: <span class="pointing">👉🏾</span> Must be Booked by July 5, 2024!!!</h1>
+            <img alt="Glasgow Park" class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/13/d4/03/47/glasgow-park-picnic-pavilion.jpg" />
+            <h1>Saturday Night: 90s HipHop Party</h1>
+            <img alt="DART First State" class="img-fluid" src="https://mail.google.com/mail/u/0?ui=2&ik=ef9e50ef91&attid=0.1&permmsgid=msg-a:r2240289109222331617&th=1904c3571d4297db&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ9ttMDM-fnv7My_kM7uQmPpTfUPlh6U3_OgheAS1x4ay4G7ZDZSVGYIPIg6dSYaUYmJX6NbMzNWdbZYqeKWxdbr_L48IsDdI3TSwfq14cpaQwQDahxJroayfUY&disp=emb&realattid=1DA8CBFD-9C67-4430-ABB1-C34C57B6599E" />
+            <p>Come snap back to the 90s with a fun get-together on Saturday night featuring R&B and Hip-hop music! The event starts at 6 PM and ends at 11:30 PM.</p>
+            <p>There’s also an exciting opportunity to walk away with special prizes. Raffle tickets will be given upon arrival once paid for. Each raffle ticket is only $1.50.</p>
+            <p>The more tickets you buy, the greater your chances of winning a prize!</p>
+            <h1>90s Hip-hop Outfit Contest!</h1>
+            <p>Show off your best 90s outfit! The winner will receive a special prize.</p>
+        </section>
+        <section id="day3">
+            <h2>Sunday, August 4, 2024</h2>
+            <p><strong>Church Service:</strong> Morning service will be held at the local community church from 9 AM to 12 PM. A wonderful way to wrap up our weekend of fellowship and fun. Apostle Edward Gipson will preaching the word of God.</p>
+            <h2>Sunday Evening: Family Banquet 3:00-6:00 PM</h2>
+            <h1>Doors will open at 3 PM Sharp</h1>
+            <p>Join us for a cherished tradition and a special program that marks the conclusion of our family reunion. Come and enjoy an evening of fellowship, delicious food, and heartwarming moments with loved ones. We'll be celebrating various accomplishments and, most importantly, honoring the memory of those who have passed. Don't miss this opportunity to create lasting memories and strengthen family bonds. We look forward to seeing you there!</p>
+            <h1><span class="pointing">👉🏾</span> All monies must be paid by July 5, 2024. See your state representative for further details. (If you are not attending the banquet, we ask that you pay $25 to cover picnic food costs.)</h1>
+            <p>Ticket Prices:<br />Kids (12 and under): $38.00<br />Adults (12 and over): $75.00</p>
+        </section>
     </main>
     <footer>
       <!-- Footer content here -->
     </footer>
-    <script src="app.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
