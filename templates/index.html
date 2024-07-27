@@ -76,11 +76,6 @@
             cursor: pointer;
             z-index: 1000;
         }
-<<<<<<< HEAD
-=======
-
-        
->>>>>>> origin/main
     </style>
 </head>
 <body>
@@ -115,25 +110,15 @@
     <button id="toggle-button">Toggle Menu</button>
 
     <script>
-       document.getElementById('toggle-button').addEventListener('click', function() {
+        document.getElementById('toggle-button').addEventListener('click', function() {
             const navbar = document.getElementById('navbar');
 
-            navbar.style.transform = navbar.style.transform === 'scale(1)' ? 'scale(0)' : 'scale(1)';
-        });
-            if (navbar.style.transform.includes('scale(1)')) {
-                navbar.classList.remove('spin');
+            if (navbar.style.transform === 'scale(1)') {
                 navbar.style.transform = 'scale(0)';
             } else {
-                navbar.classList.add('spin');
                 navbar.style.transform = 'scale(1)';
             }
-         
-         });
-
+        });
     </script>
-
-        
 </body>
 </html>
-
-
