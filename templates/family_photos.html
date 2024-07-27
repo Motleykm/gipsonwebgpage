@@ -18,46 +18,14 @@
 
         .navbar {
             background-color: #343a40;
-            padding: 1rem;
         }
 
         .navbar a {
             color: #fff;
-            margin-right: 1rem;
-            text-decoration: none;
         }
 
         .navbar a:hover {
             text-decoration: underline;
-        }
-
-        .navbar .search-container {
-            margin-left: auto;
-        }
-
-        .navbar .search-container input[type=text] {
-            padding: 5px;
-            font-size: 17px;
-            border: 1px solid #ddd;
-            width: 200px;
-            background: #f1f1f1;
-        }
-
-        .navbar .search-container button {
-            padding: 5px;
-            background: #2196F3;
-            color: white;
-            font-size: 17px;
-            border: 1px solid #2196F3;
-            cursor: pointer;
-        }
-
-        .navbar .search-container button:hover {
-            background: #0b7dda;
-        }
-
-        .container {
-            margin-top: 2rem;
         }
 
         .intro {
@@ -73,11 +41,6 @@
             margin-bottom: 1rem;
         }
 
-        .intro p {
-            margin-bottom: 0;
-            font-size: 1.1rem;
-        }
-
         .album-container {
             display: flex;
             flex-wrap: wrap;
@@ -91,8 +54,9 @@
         }
 
         .album-icon img {
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            max-width: 150px;
+            height: auto;
             border-radius: 50%;
             cursor: pointer;
             transition: transform 0.3s;
@@ -119,7 +83,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
-        <div class="collapse navbar-collapse">
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('info') }}">Info</a></li>
