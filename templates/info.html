@@ -14,47 +14,99 @@
         font-family: Arial, sans-serif;
       }
 
-      .navbar ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .navbar ul li {
-        display: inline;
-        margin-right: 20px;
-      }
-
-      .navbar ul li a {
-        text-decoration: none;
-        color: gold;
-        font-weight: bold;
-      }
-
-      .introduction h1,
-      h2,
-      h3,
-      h1,
-      p,
-      a {
-        color: gold;
-      }
-
-      .pointing {
-        display: inline-block;
-        animation: pointing 1s infinite;
-      }
-
-      @keyframes pointing {
-        0% {
-          transform: translateX(0);
+     .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            z-index: 1000;
         }
-        50% {
-          transform: translateX(5px);
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
         }
-        100% {
-          transform: translateX(0);
+
+        .navbar ul li {
+            margin-right: 10px;
         }
-      }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #575757;
+        }
+
+        .content {
+            margin: 80px 20px;
+        }
+
+        .content h4, .content p, .content h2 {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #575757;
+        }
+
+        .news-posts {
+            margin-top: 20px;
+        }
+
+        .news-post {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .news-post img {
+            max-width: 100%;
+            height: auto;
+        }
+
     </style>
   </head>
   <body>
