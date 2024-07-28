@@ -5,16 +5,18 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Enhanced Radial Menu</title>
     <style>
-        body {
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-        }
+       body {
+    background-image: url('/static/images/converted_image.jpeg'); /* Use the correct path to your image */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
 
         .navbar-container {
             position: relative;
@@ -28,7 +30,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: #333;
+            background: rgba(51, 51, 51, 0.8); /* Semi-transparent dark background */
             transition: transform 0.5s ease-in-out;
             transform: scale(0); /* Start minimized */
         }
@@ -98,12 +100,11 @@
                 <span>Contacts</span>
             </a>
             <a class="nav-item" href="/family_photos_main" style="--i:4">
-              <img alt="Info" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
-
+                <img alt="Family Photos" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
                 <span>Family Photos</span>
             </a>
             <a class="nav-item" href="/news" style="--i:5">
-                <img alt="News" src="">
+                <img alt="News" src="https://via.placeholder.com/40">
                 <span>News</span>
             </a>
         </div>
