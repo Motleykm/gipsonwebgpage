@@ -5,18 +5,18 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Enhanced Radial Menu</title>
     <style>
-       body {
-    background-image: url('/static/images/converted_image.jpeg'); /* Use the correct path to your image */
-    background-size: cover;
-    background-position: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
+        body {
+            background-image: url('{{ url_for('static', filename='images/converted_image.jpeg') }}'); /* Corrected URL for background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
 
         .navbar-container {
             position: relative;
