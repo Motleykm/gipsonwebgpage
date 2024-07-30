@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{% block title %}{% endblock %} - Family Reunion</title>
+    <title>{% block title %}Gipson Family Webpage{% endblock %}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +49,15 @@
     </div>
 
     <footer class="bg-dark text-white text-center py-3 mt-5">
-        &copy; 2024 Family Reunion
+        <div class="footer-content">
+            <p>&copy; 2024 Gipson Family Webpage. All rights reserved.</p>
+            <div class="social-icons">
+                <a aria-label="Facebook" href="https://www.facebook.com/gipson.reunion.96" target="_blank">
+                    <img alt="Facebook" height="40" src="{{ url_for('static', filename='images/3EC3D6D6-0087-4ECE-A021-078CD138FE11_4_5005_c.jpeg') }}" width="40">
+                </a>
+                <!-- Add more social icons as needed -->
+            </div>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>

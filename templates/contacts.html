@@ -124,6 +124,34 @@
         #toggle3D:hover {
             background-color: #218838;
         }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #4267B2;
+        }
     </style>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyCNVgkvNOWw6zo83X2rRxHO8cBfqBDtI&callback=initMap"></script>
     <script>
@@ -168,7 +196,7 @@
                         <h3>${location.rep}</h3>
                         <p><strong>Phone:</strong> ${location.phone}</p>
                         <p id="weather-${location.city}">Fetching weather...</p>
-                        <img src="rep_image_url" alt="Representative Image" style="width:100px;height:auto;">
+                        <img src="images/rep_image.jpg" alt="${location.rep}" style="width:100px;height:auto;">
                     </div>
                 `
             });
@@ -280,17 +308,25 @@
 </div>
 
 <p class="intro">
-    Welcome to the contact page for your state representative. Here, you can find the contact information and
-    reach out to your representative directly. Use the map below to locate your representatives and
+    Welcome to the contact page for your state representative. Here, you can find the contact information about the family member and reach out to them
+    directly. Use the map below to locate your representatives and
     the contact form to send a message. We encourage you to voice your concerns, ask questions, or provide
     feedback on any issues that matter to you.
 </p>
 
-<div class="social-icons">
+<footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Gipson Family Webpage. All rights reserved.</p>
+            <div class="social-icons">
+                <a aria-label="Facebook" href="https://www.facebook.com/gipson.reunion.96" target="_blank">
+                    <img alt="Facebook" height="40" src="{{ url_for('static', filename='images/3EC3D6D6-0087-4ECE-A021-078CD138FE11_4_5005_c.jpeg') }}" width="40">
 
-    <div class="social-icons">
 
-        <a href="https://https://www.facebook.com/gipson.reunion.96?mibextid=JRoKGi" target="_blank"><i class="fab fa-facebook"></i></a>
-    </div>
-  </body>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
 </html>

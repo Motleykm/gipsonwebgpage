@@ -1,0 +1,38 @@
+<div class="footer-container">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>About Us</h2>
+            <p>
+                Welcome to the Gipson Family Webpage! Our mission is to keep the family connected and informed about events, news, and milestones. We are a vibrant and loving family, and we hope to continue building lasting memories together.
+            </p>
+        </div>
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('info') }}">Info</a></li>
+                <li><a href="{{ url_for('news') }}">News</a></li>
+                <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+                <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p>
+                <strong>Email:</strong> <a href="mailto:Gipfamilyreunion2024@gmail.com">contact@gipsonfamily.com</a>
+            </p>
+            <p>
+            </p>
+            <div class="social-icons">
+                <a aria-label="Facebook" href="https://www.facebook.com/gipson.reunion.96" target="_blank">
+                    <img alt="Facebook" height="40" src="{{ url_for('static', filename='images/facebook-icon.png') }}" width="40">
+                </a>
+                <!-- Add more social icons as needed -->
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Gipson Family Webpage. All rights reserved.</p>
+    </div>
+</div>
