@@ -71,7 +71,6 @@ def contacts():
 
     return render_template('contacts.html')
 
-
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
     try:
@@ -248,7 +247,6 @@ def family_photos_main():
         if photo.year not in year_thumbnails:
             year_thumbnails[photo.year] = photo
     return render_template('family_photos.html', year_thumbnails=year_thumbnails)
-
 
 @app.route('/search')
 def search():
