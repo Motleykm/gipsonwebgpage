@@ -9,10 +9,58 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .animated-banner {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #f0f0f0; /* Background color for contrast */
+    padding: 10px;
+}
+
+.blinking-message h1,
+.scrolling-text h1 {
+    display: inline-block;
+    margin: 0;
+    font-size: 2rem; /* Adjust as needed */
+}
+
+.blinking-message h1 {
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.scrolling-text {
+    white-space: nowrap;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.pointing {
+    font-size: 2rem; /* Adjust as needed */
+    vertical-align: middle;
+}
+
         body {
             background: url("{{ url_for('static', filename='images/52351501-E6D1-42F6-A5E2-9DCA1928B97A.jpeg') }}") no-repeat center center fixed;
             background-size: cover;
-            color: #b8860b; /* Dark gold color */
+            color:#: hwb(55 6% 30%);
             font-family: Arial, sans-serif;
         }
 
@@ -208,14 +256,26 @@
             <h1>90s Hip-hop Outfit Contest!</h1>
             <p>Show off your best 90s outfit! The winner will receive a special prize.</p>
         </section>
-        <section id="day3">
-            <h2>Sunday, August 4, 2024</h2>
-            <p><strong>Church Service:</strong> Morning service  church  service will start at 10am. A wonderful way to wrap up our weekend of fellowship and fun. Apostle Edward Gipson will preaching the word of God.</p>
-            <h2>Sunday Evening: Family Banquet 4:00-until</h2>
-            <p>Join us for a cherished tradition and a special program that marks the conclusion of our family reunion. Come and enjoy an evening of fellowship, delicious food, and heartwarming moments with loved ones. We'll be celebrating various accomplishments and, most importantly, honoring the memory of those who have passed. Don't miss this opportunity to create lasting memories and strengthen family bonds. We look forward to seeing you there!</p>
-            <h1><span class="pointing">👉🏾</span> All monies must be paid by July 5, 2024. See your state representative for further details. (If you are not attending the banquet, we ask that you pay $25 to cover picnic food costs.)</h1>
-            <p>Ticket Prices:<br />Kids (12 and under): $38.00<br />Adults (12 and over): $75.00</p>
-        </section>
+<section id="day3">
+    <h2>Sunday, August 4, 2024</h2>
+    <p><strong>Church Service:</strong> Morning service will start at 10am. A wonderful way to wrap up our weekend of fellowship and fun. Apostle Edward Gipson will be preaching the word of God.</p>
+    <h2>Sunday Evening: Family Banquet 4:00-until</h2>
+    <p>Join us for a cherished tradition and a special program that marks the conclusion of our family reunion. Come and enjoy an evening of fellowship, delicious food, and heartwarming moments with loved ones. We'll be celebrating various accomplishments and, most importantly, honoring the memory of those who have passed. Don't miss this opportunity to create lasting memories and strengthen family bonds. We look forward to seeing you there!</p>
+
+    <div class="animated-banner">
+    <div class="blinking-message">
+        <h1><span class="pointing">👉🏾</span> Banquet Is Sold Out!!!!!!!!!!!!!!!</h1>
+        <h1><span class="pointing">👈🏾</span> </h1>
+    </div>
+
+    <div class="scrolling-text">
+        <h1><span class="pointing">👉🏾</span> No Extra People Will Be Allowed</h1>
+        <h1><span class="pointing">👈🏾</span></h1>
+    </div>
+</div>
+
+</section>
+
     </main>
     <footer>
         <div class="footer-content">
