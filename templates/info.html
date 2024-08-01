@@ -10,57 +10,56 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .animated-banner {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    background-color: #f0f0f0; /* Background color for contrast */
-    padding: 10px;
-}
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0; /* Background color for contrast */
+            padding: 10px;
+        }
 
-.blinking-message h1,
-.scrolling-text h1 {
-    display: inline-block;
-    margin: 0;
-    font-size: 2rem; /* Adjust as needed */
-}
+        .blinking-message h1,
+        .scrolling-text h1 {
+            display: inline-block;
+            margin: 0;
+            font-size: 2rem; /* Adjust as needed */
+            color: #4b4b4b; /* Darker color for better contrast */
+            background-color: rgba(255, 255, 255, 0.7); /* Optional: Add a semi-transparent background */
+            padding: 5px; /* Add some padding for readability */
+            border-radius: 5px; /* Optional: Rounded corners */
+        }
 
-.blinking-message h1 {
-    animation: blink 1s step-start infinite;
-}
+        .blinking-message h1 {
+            animation: blink 1s step-start infinite;
+        }
 
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
-}
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
 
-.scrolling-text {
-    white-space: nowrap;
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    animation: scroll 10s linear infinite;
-}
+        .scrolling-text {
+            white-space: nowrap;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: scroll 10s linear infinite;
+        }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.pointing {
-    font-size: 2rem; /* Adjust as needed */
-    vertical-align: middle;
-}
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
 
         body {
             background: url("{{ url_for('static', filename='images/52351501-E6D1-42F6-A5E2-9DCA1928B97A.jpeg') }}") no-repeat center center fixed;
             background-size: cover;
-            color:#: hwb(55 6% 30%);
+            color: #b8860b; /* Darker gold color for body text */
             font-family: Arial, sans-serif;
         }
 
@@ -84,7 +83,7 @@
             background: none;
             padding: 10px;
             border-radius: 8px;
-            color: #b8860b; /* Dark gold color for content text */
+            color: #b8860b; /* Darker gold color for content text */
         }
 
         form {
@@ -138,7 +137,17 @@
         }
 
         .footer-content {
-            color: #b8860b; /* Dark gold color for footer text */
+            color: #8b4513; /* Even darker gold color for footer text */
+        }
+
+        .banquet-sold-out {
+            background-color: #ff4d4d; /* Red background for urgency */
+            color: #fff; /* White text for contrast */
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.5rem; /* Larger text */
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -160,7 +169,7 @@
         </div>
     </nav>
 
-    <main class="content">
+    < main class="content">
         <div class="introduction">
             <h1>Welcome to Our Cherished Family Reunion!</h1>
             <p>
@@ -168,27 +177,82 @@
             </p>
         </div>
         <h3>Calendar of Events:</h3>
-        <section id="day1">
+
             <h2>Friday, August 2, 2024</h2>
             <p>
                 <strong>Hotel Check-in:</strong> Check-in at Hilton-Christiana Hotel starts at 4 PM. Don't forget to pick up your welcome t-shirt!
             </p>
-            <p>T-shirt Pickup/Ice Cream Social: <em>5 PM - 9 PM</em></p>
+            <p>T-shirt Pickup/Snack Social: <em>5 PM - 9 PM</em></p>
             <img alt="King Guest Room" class="img-fluid" src="https://www.hilton.com/im/en/ILGCHHF/5246720/king-guestroom-h.jpg?impolicy=crop&cw=4473&ch=2504&gravity=NorthWest&xposition=0&yposition=247&rw=768&rh=430"/>
             <p>
                 Hotel Booking:
                 <a href="https://www.hilton.com/en/hotels/ilgchhf-hilton-wilmington-christiana/" target="_blank">Hilton Wilmington Christiana</a>
             </p>
-            <div class="container">
-                <h1>Ways of Travel in Delaware</h1>
+
+           div class="container">
+        <h1>Things to Do in Delaware</h1>
+        <!-- Additional content goes here -->
+    </div>
+    <h2>Delaware Riverfront</h2>
+<img alt="Delaware Riverfront" src="{{ url_for('static', filename='images/10518208643_fd26bafd70_k.jpg') }}">
+<p>
+    The Delaware Riverfront is a revitalized area offering a mix of dining, entertainment, and cultural experiences. Visitors can enjoy a stroll along the scenic riverwalk, explore museums, or catch a show at local theaters. The area also hosts various festivals and events throughout the year, making it a lively destination.
+</p>
+<p>
+    <a href="https://www.riverfrontwilm.com/" target="_blank">Visit the Delaware Riverfront Website</a>
+</p>
+
+<h2>Christiana Mall</h2>
+<img alt="Christiana Mall" src="{{ url_for('static', filename='images/download (1).jpeg') }}">
+<p>
+    The Christiana Mall is one of Delaware's premier shopping destinations, featuring over 200 stores, dining options, and a movie theater.
+</p>
+<p>
+    <a href="https://www.christianamall.com/" target="_blank">Visit the Christiana Mall Website</a>
+
+</p>
+                  <h2>Main Event</h2>
+                <img alt="Main Event" src="{{ url_for('static', filename='images/MainEventExterior0-eaeb3ed75056b3a_eaeb40ae-5056-b3a8-49f5810c0946fd3a.jpeg') }}">
+                 <img alt="Main Event" src="{{ url_for('static', filename='images/MainEventBar0-eaeee7945056b3a_eaefa44f-5056-b3a8-49d9b5e1837bbab4.jpeg') }}">
+                <p>
+                     <p>
+            The **Main Event** in Newark, Delaware, is a premier entertainment venue offering a diverse range of activities and attractions. Here's a detailed look at what you can expect:
+
+ Main Event Newark, DE
+
+- **Location**: 275 E. Main St., Newark, DE 19711, located in the heart of Newark.
+- **Activities**:
+  - **Bowling**: Modern bowling lanes with an upscale, comfortable setting. The venue features automatic scoring systems and themed bowling events.
+  - **Arcade Games**: A large selection of video and skill games, including classic arcade games and the latest in gaming technology.
+  - **Laser Tag**: An immersive, high-energy laser tag arena where players can compete in a futuristic setting.
+  - **Billiards**: Pool tables for casual or competitive play.
+  - **Escape Rooms**: Themed escape rooms that challenge teams to solve puzzles and complete objectives to "escape" within a set time.
+  - **Virtual Reality**: Cutting-edge VR experiences that offer unique and immersive gameplay.
+  - **Mini Golf**: An indoor mini-golf course with creative and challenging holes.
+- **Dining**: The venue includes a full-service restaurant offering a variety of food options, from appetizers and burgers to pizzas and salads.
+- **Events and Parties**: Main Event Newark is an ideal location for birthday parties, corporate events, and group outings, with customizable packages available.
+
+### Features
+
+- **Family-Friendly Environment**: Designed to cater to guests of all ages, with activities suitable for families, friends, and corporate groups.
+- **Group Packages**: Offers party packages that can be tailored for various occasions, including birthday parties and team-building events.
+- **Promotions and Specials**: Regularly features promotions and special events, including game deals, themed nights, and holiday events.
+
+The Main Event in Newark provides a comprehensive entertainment experience with a variety of activities, making it a popular destination for both locals and visitors.
+        </p>
+                </p>
+                <h1>Ways of Travel to Delaware</h1>
+
                 <div class="travel-option">
+
                     <h2>Philadelphia International Airport (PHL)</h2>
                     <p><strong>Location:</strong> Approximately 30 miles north of Wilmington, DE, in Philadelphia, PA.</p>
                     <p><strong>Description:</strong> Philadelphia International Airport is the primary airport serving the Greater Philadelphia area. It offers a wide range of domestic and international flights, making it a convenient option for Delaware travelers.</p>
                     <p><strong>Facilities:</strong> The airport features multiple terminals, a variety of dining and shopping options, car rental services, and shuttle services to Delaware.</p>
                     <p><strong>Transportation to Delaware:</strong> Travelers can use shuttle services, rental cars, or take SEPTA Regional Rail to Wilmington, DE.</p>
                     <p><strong>Website:</strong> <a href="https://www.phl.org" target="_blank">Philadelphia International Airport</a></p>
-                    <img alt="Philadelphia International Airport" class="img-fluid" src="https://www.phl.org/Assets/PHL/Content/Images/Visit%20Philadelphia/04_pope_concourse_view.jpg">
+                     <img alt="Philadelphia International Airport"  src="{{ url_for('static', filename='images/img.png') }}">
+
                 </div>
                 <!-- Repeat similar structure for other travel options -->
                 <div class="travel-option">
@@ -198,7 +262,7 @@
                     <p><strong>Facilities:</strong> BWI has extensive parking, rental car services, numerous dining and shopping options, and free Wi-Fi.</p>
                     <p><strong>Transportation to Delaware:</strong> Options include rental cars, shuttle services, or taking the MARC train to connect with Amtrak services to Wilmington.</p>
                     <p><strong>Website:</strong> <a href="https://www.bwiairport.com" target="_blank">Baltimore/Washington International Thurgood Marshall Airport</a></p>
-                    <img alt="BWI Airport" class="img-fluid" src="https://www.bwiairport.com/files/images/home/BWI_Aerial.jpg">
+                    <img alt="Baltimore/Washington International Thurgood Marshall Airport (BWI" src="{{ url_for('static', filename='images/OG-BWIshare2.jpg') }}">
                 </div>
                 <div class="travel-option">
                     <h2>New Castle Airport (ILG)</h2>
@@ -217,7 +281,7 @@
                     <p><strong>Facilities:</strong> The station features a ticket office, waiting areas, restrooms, and limited dining options. It also provides parking facilities and car rental services nearby.</p>
                     <p><strong>Transportation:</strong> The station is easily accessible by local transit, taxi, and ride-sharing services. Passengers can also connect to SEPTA Regional Rail for local travel.</p>
                     <p><strong>Website:</strong> <a href="https://www.amtrak.com/stations/wil.html" target="_blank">Amtrak Wilmington Station</a></p>
-                    <img alt="Amtrak Wilmington Station" class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Wilmington_station_2016.jpg">
+                    <img alt="Amtrak Train Station " src="{{ url_for('static', filename='images/Amtrak-LongDistance_cropped_42 (1).jpeg') }}">
                 </div>
                 <div class="travel-option">
                     <h2>DART First State</h2>
@@ -233,10 +297,33 @@
                     <p><strong>Routes:</strong> The Wilmington/Newark Line connects Philadelphia to Wilmington and Newark, DE.</p>
                     <p><strong>Transportation:</strong> This service provides a reliable option for commuters and travelers between Delaware and Philadelphia, with stops at multiple stations in Delaware.</p>
                     <p><strong>Website:</strong> <a href="https://www.septa.org" target="_blank">SEPTA Regional Rail</a></p>
-                    <img alt="SEPTA Regional Rail" class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/SEPTA_Silverliner_V_701_2011.jpg">
-                </div>
-            </div>
-        </section>
+                   <img alt="SEPTA Regional Rail" src="{{ url_for('static', filename='images/SEPTA_GE_Silverliner_IV_308.jpeg') }}">
+
+                    <h2>Coming From the Airport</h2>
+<section>
+    <strong>
+        Instead of taking the train, we suggest that you carpool with other relatives arriving at the same time or choose one of the rideshare services to go directly to the hotel.
+    </strong>
+
+    <h2>Uber</h2>
+    <p>
+        Uber (rideshare service)
+        <img alt="Uber Logo" src="{{ url_for('static', filename='images/img_1.png') }}">
+    </p>
+    <p>
+        <strong>Website:</strong> <a href="https://www.uber.com/" target="_blank">Uber</a>
+    </p>
+
+    <h2>Lyft</h2>
+    <p>
+        Lyft (rideshare service)
+        <img alt="Lyft Logo" src="{{ url_for('static', filename='images/358720578_588583980056641_5940488229481939017_n.png') }}">
+    </p>
+    <p>
+        <strong>Website:</strong> <a href="https://www.lyft.com/" target="_blank">Lyft</a>
+    </p>
+</section>
+
         <section id="day2">
             <h2>Saturday, August 3, 2024</h2>
             <p>
@@ -249,7 +336,7 @@
             <h1>Important Message: <span class="pointing">👉🏾</span> Must be Booked by July 5, 2024!!!</h1>
             <img alt="Glasgow Park" class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/13/d4/03/47/glasgow-park-picnic-pavilion.jpg" />
             <h1>Saturday Night: 90s HipHop Party</h1>
-            <img alt="DART First State" class="img-fluid" src="https://mail.google.com/mail/u/0?ui=2&ik=ef9e50ef91&attid=0.1&permmsgid=msg-a:r2240289109222331617&th=1904c3571d4297db&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ9ttMDM-fnv7My_kM7uQmPpTfUPlh6U3_OgheAS1x4ay4G7ZDZSVGYIPIg6dSYaUYmJX6NbMzNWdbZYqeKWxdbr_L48IsDdI3TSwfq14cpaQwQDahxJroayfUY&disp=emb&realattid=1DA8CBFD-9C67-4430-ABB1-C34C57B6599E" />
+             <img alt="90s Party" src="{{ url_for('static', filename='images/77D8DCA3-4F58-42D3-858C-E0D4FBE9D85E.jpg') }}">
             <p>Come snap back to the 90s with a fun get-together on Saturday night featuring R&B and Hip-hop music! The event starts at 6:30 PM and ends at 11 PM.</p>
             <p>There’s also an exciting opportunity to walk away with special prizes. Raffle tickets will be given upon arrival once paid for. Each raffle ticket is $2.00.</p>
             <p>The more tickets you buy, the greater your chances of winning a prize!</p>
@@ -269,28 +356,32 @@
     </div>
 
     <div class="scrolling-text">
-        <h1><span class="pointing">👉🏾</span> No Extra People Will Be Allowed</h1>
+        <h1><span class="pointing">👉🏾</span> No seats available</h1>
         <h1><span class="pointing">👈🏾</span></h1>
     </div>
 </div>
-
 </section>
-
-    </main>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Gipson Family Webpage. All rights reserved.</p>
-            <div class="social-icons">
-                <a aria-label="Facebook" href="https://www.facebook.com/gipson.reunion.96" target="_blank">
-                    <img alt="Facebook" height="40" src="{{ url_for('static', filename='images/3EC3D6D6-0087-4ECE-A021-078CD138FE11_4_5005_c.jpeg') }}" width="40">
-                </a>
-            </div>
-        </div>
-    </footer>
+                </div>
+<div class="footer">
+        <p>&copy; 2024 Gipson Family Reunion</p>
+    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <div class="footer-content">
+            <p>&copy; 2024 Gipson Family Webpage. All rights reserved.</p>
+            <div class="social-icons">
+                <a aria-label="Facebook" href="https://www.facebook.com/gipson.reunion.96" target="_blank">
+                    <img alt="Facebook" height="40" src="{{ url_for('static', filename='images/3EC3D6D6-0087-4ECE-A021-078CD138FE11_4_5005_c.jpeg') }}" width="40">
+
+
+                </a>
+            </div>
+        </div>
 </body>
 </html>
+
+
