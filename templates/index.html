@@ -2,21 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Enhanced Radial Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All About The Gipsons is the official website for the Gipson family reunion. Discover our history, upcoming events, and family news.">
+    <meta name="keywords" content="Gipson Family, Family Reunion, Gipson Family Reunion, Family Events">
+    <meta name="author" content="Kamirah Motley">
+    <meta property="og:title" content="All About The Gipsons - Family Reunion Website">
+    <meta property="og:description" content="Join us for the Gipson Family Reunion. Explore our family's history, events, and more.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/rsz_4e57ce68-8858-44c7-a0f6-f4751350efb8.jpg') }}">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All About The Gipsons - Family Reunion Website">
+    <meta name="twitter:description" content="Discover the Gipson family's history and join us for our reunion.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/new_image.jpg') }}">
+    <title>{% block title %}Gipswebpage{% endblock %}</title>
     <style>
         body {
-    background-image: url('{{ url_for('static', filename='images/converted_image.jpeg') }}');
-    background-size: cover;
-    background-position: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
+            background-image: url('{{ url_for('static', filename='images/converted_image.jpeg') }}');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
 
         .navbar-container {
             position: relative;
@@ -81,14 +92,19 @@
     </style>
 </head>
 <body>
+    {% block header %}
+    <!-- Default header content -->
+    {% endblock %}
+
     <div class="navbar-container">
         <div class="navbar" id="navbar">
             <a class="nav-item" href="/" style="--i:0">
-                <img alt="Home" src="https://via.placeholder.com/40">
+                <img src="{{ url_for('static', filename='images/rsz_4e57ce68-8858-44c7-a0f6-f4751350efb8.jpg') }}" alt="Resized Image">
+
                 <span>Home</span>
             </a>
             <a class="nav-item" href="/about" style="--i:1">
-                <img alt="About" src="https://via.placeholder.com/40">
+                <img alt="About" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
                 <span>About</span>
             </a>
             <a class="nav-item" href="/info" style="--i:2">
@@ -96,7 +112,7 @@
                 <span>Info</span>
             </a>
             <a class="nav-item" href="/contacts" style="--i:3">
-                <img alt="Contacts" src="https://via.placeholder.com/40">
+                <img alt="Contacts" src="{{ url_for('static', filename='images/985F3951-6931-4FD6-8042-52AC0A6945B1_1_201_a.jpeg') }}">
                 <span>Contacts</span>
             </a>
             <a class="nav-item" href="/family_photos_main" style="--i:4">
@@ -104,7 +120,8 @@
                 <span>Family Photos</span>
             </a>
             <a class="nav-item" href="/news" style="--i:5">
-                <img alt="News" src="https://via.placeholder.com/40">
+                <img alt="News" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
+
                 <span>News</span>
             </a>
         </div>

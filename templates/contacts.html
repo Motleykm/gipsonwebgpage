@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head> <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Weekend Getaway Itinerary</title>
+    <title>Contact Your State Representative</title>
     <!-- Description meta tag for SEO and accessibility -->
     <meta content="Join the Gipson Family Reunion for a weekend of fun, activities, and family bonding in Delaware. Get ready for an unforgettable experience with your loved ones!" name="description">
     <!-- Bootstrap CSS -->
-    <title>Contact Your State Representative</title>
     <style>
         .navbar {
             position: fixed;
@@ -162,6 +162,8 @@
     <script>
         let map;
         let is3D = false;
+        const apiKey = '14e310d419msha01c8f6bb7635c6p107d91jsn1230a2532d99';
+        const host = 'open-weather13.p.rapidapi.com';
 
         function initMap() {
             var mapOptions = {
@@ -173,13 +175,12 @@
             };
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-            // Adding markers for specific locations
             var locations = [
-                { lat: 39.6685564, lng: -75.586189, title: 'New Castle, DE', email: 'jcat5050@gmail.com', rep: 'Caroline Motley', phone: '302-521-4120', city: 'New Castle' },
-                { lat: 34.0522, lng: -118.2437, title: 'Los Angeles, CA', rep: 'Rep. Jane Smith', phone: '987-654-3210', city: 'Los Angeles' },
-                { lat: 41.8781, lng: -87.6298, title: 'Chicago, IL', rep: 'Rep. Michael Brown', phone: '555-555-5555', city: 'Chicago' },
-                { lat: 29.7604, lng: -95.3698, title: 'Houston, TX', rep: 'Rep. Susan Johnson', phone: '444-444-4444', city: 'Houston' },
-                { lat: 33.7490, lng: -84.3880, title: 'Atlanta, GA', rep: 'Rep. Chris Lee', phone: '333-333-3333', city: 'Atlanta' }
+                { lat: 33.7490, lng: -84.3880, title: 'Atlanta, GA', city: 'Atlanta, Georgia' },
+                { lat: 26.1224, lng: -80.1373, title: 'Fort Lauderdale, FL', city: 'Fort Lauderdale, Florida' },
+                { lat: 40.5068, lng: -74.2654, title: 'Perth Amboy, NJ', city: 'Perth Amboy, New Jersey' },
+                { lat: 41.1865, lng: -73.1952, title: 'Bridgeport, CT', city: 'Bridgeport, Connecticut' },
+                { lat: 39.6686, lng: -75.5862, title: 'New Castle, DE', city: 'New Castle, Delaware' }
             ];
 
             locations.forEach(function (location) {
@@ -188,7 +189,6 @@
         }
 
         function addMarker(location, map) {
-            console.log('Adding marker for:', location.title);
             var marker = new google.maps.Marker({
                 position: { lat: location.lat, lng: location.lng },
                 map: map,
@@ -198,45 +198,50 @@
             var infowindow = new google.maps.InfoWindow({
                 content: `
                     <div class="rep-info">
-                        <h3>${location.rep}</h3>
-                        <p><strong>Phone:</strong> ${location.phone}</p>
-                        <p id="weather-${location.city}">Fetching weather...</p>
-                        <img src="images/rep_image.jpg" alt="${location.rep}" style="width:100px;height:auto;">
+                        <h3>${location.title}</h3>
+                        <p id="weather-${encodeURIComponent(location.city)}">Fetching weather...</p>
+                        <img src="images/rep_image.jpg" alt="${location.title}" style="width:100px;height:auto;">
                     </div>
                 `
             });
 
             marker.addListener('click', function () {
-                fetchWeather(location.city);
                 infowindow.open(map, marker);
+                fetchWeather(location.city);
             });
         }
 
-        function fetchWeather(city) {
-            var apiKey = 'YOUR_WEATHER_API_KEY';
-            var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+        async function fetchWeather(city) {
+            const url = `https://${host}/city/${encodeURIComponent(city)}/EN`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key':'14e310d419msha01c8f6bb7635c6p107d91jsn1230a2532d99',
+                    'x-rapidapi-host':'open-weather13.p.rapidapi.com'
+                }
+            };
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Weather data for', city, data);
-                    var weatherElement = document.getElementById(`weather-${city}`);
-                    weatherElement.innerHTML = `<strong>Weather:</strong> ${data.weather[0].description}, ${data.main.temp}°F`;
-                })
-                .catch(error => {
-                    console.error('Error fetching weather data:', error);
-                });
-        }
-
-        function toggle3D() {
-            if (is3D) {
-                map.setTilt(0);
-                map.setHeading(0);
-            } else {
-                map.setTilt(45);
-                map.setHeading(90);
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const result = await response.json();
+                const weatherElement = document.getElementById(`weather-${encodeURIComponent(city)}`);
+                if (weatherElement) {
+                    if (result && result.weather) {
+                        weatherElement.innerHTML = `<strong>Weather:</strong> ${result.weather[0].description}, ${result.main.temp}°F`;
+                    } else {
+                        weatherElement.innerHTML = `<strong>Weather data not available.</strong>`;
+                    }
+                }
+            } catch (error) {
+                console.error(`Error fetching weather data for ${city}:`, error);
+                const weatherElement = document.getElementById(`weather-${encodeURIComponent(city)}`);
+                if (weatherElement) {
+                    weatherElement.innerHTML = `<strong>Weather data not available.</strong>`;
+                }
             }
-            is3D = !is3D;
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -257,81 +262,82 @@
             document.getElementById("toggle3D").onclick = function () {
                 toggle3D();
             }
-
-            // Initialize the map
-            initMap();
         });
+
+        function toggle3D() {
+            if (is3D) {
+                map.setTilt(0);
+                map.setHeading(0);
+            } else {
+                map.setTilt(45);
+                map.setHeading(90);
+            }
+            is3D = !is3D;
+        }
     </script>
 </head>
 <body>
-<nav class="navbar">
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('info') }}">Info</a></li>
-        <li><a href="{{ url_for('news') }}">News</a></li>
-        <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
-        <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
-    </ul>
-</nav>
-<h1> State Representatives Map </h1>
-<div class="container">
-    <h1 class="text-center mt-5">Contact Your State Representative</h1>
-    <div id="map"></div>
-    <button class="btn btn-primary mt-3" id="openContactForm">Open Contact Form</button>
-    <button id="toggle3D">Toggle 3D View</button>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('info') }}">Info</a></li>
+            <li><a href="{{ url_for('news') }}">News</a></li>
+            <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+            <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+        </ul>
+    </nav>
+    <h1>State Representatives Map</h1>
+    <div class="container">
+        <h1 class="text-center mt-5">Contact Your State Representative</h1>
+        <div id="map"></div>
+        <button class="btn btn-primary mt-3" id="openContactForm">Open Contact Form</button>
+        <button id="toggle3D">Toggle 3D View</button>
 
-    <div class="contact-form-overlay" id="contactForm">
-        <div class="contact-form-content">
-            <span class="close" id="closeContactForm">&times;</span>
-            <h2>Contact Your State Representative</h2>
-            <form action="{{ url_for('submit_contact') }}" method="POST">
-                <div class="mb-3">
-                    <label class="form-label" for="name">Name:</label>
-                    <input class="form-control" id="name" name="name" required type="text">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="email">Email:</label>
-                    <input class="form-control" id="email" name="email" required type="email">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="phone">Phone:</label>
-                    <input class="form-control" id="phone" name="phone" type="text">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="state">State:</label>
-                    <input class="form-control" id="state" name="state" required type="text">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="message">Message:</label>
-                    <textarea class="form-control" id="message" name="message" required rows="4"></textarea>
-                </div>
-                <button class="btn btn-primary w-100" type="submit">Submit</button>
-            </form>
+        <div class="contact-form-overlay" id="contactForm">
+            <div class="contact-form-content">
+                <span class="close" id="closeContactForm">&times;</span>
+                <h2>Contact Your State Representative</h2>
+                <form action="{{ url_for('submit_contact') }}" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Name:</label>
+                        <input class="form-control" id="name" name="name" required type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email:</label>
+                        <input class="form-control" id="email" name="email" required type="email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="phone">Phone:</label>
+                        <input class="form-control" id="phone" name="phone" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="state">State:</label>
+                        <input class="form-control" id="state" name="state" required type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="message">Message:</label>
+                        <textarea class="form-control" id="message" name="message" required rows="4"></textarea>
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<p class="intro">
-    Welcome to the contact page for your state representative. Here, you can find the contact information about the family member and reach out to them
-    directly. Use the map below to locate your representatives and
-    the contact form to send a message. We encourage you to voice your concerns, ask questions, or provide
-    feedback on any issues that matter to you.
-</p>
+    <p class="intro">
+        Welcome to the contact page for your state representative. Here, you can find the contact information about the family member and reach out to them directly. Use the map below to locate your representatives and the contact form to send a message. We encourage you to voice your concerns, ask questions, or provide feedback on any issues that matter to you.
+    </p>
 
-<footer>
+    <footer>
         <div class="footer-content">
             <p>&copy; 2024 Gipson Family Webpage. All rights reserved.</p>
             <div class="social-icons">
                 <a aria-label="Facebook" href="https://www.facebook.com/gipson.reunion.96" target="_blank">
                     <img alt="Facebook" height="40" src="{{ url_for('static', filename='images/3EC3D6D6-0087-4ECE-A021-078CD138FE11_4_5005_c.jpeg') }}" width="40">
-
-
                 </a>
             </div>
         </div>
     </footer>
-
-
 </body>
 </html>

@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Weekend Getaway Itinerary</title>
-    <!-- Description meta tag for SEO and accessibility -->
-    <meta content="Join the Gipson Family Reunion for a weekend of fun, activities, and family bonding in Delaware. Get ready for an unforgettable experience with your loved ones!" name="description">
-    <!-- Bootstrap CSS -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All About The Gipsons is the official website for the Gipson family reunion. Discover our history, upcoming events, and family news.">
+    <meta name="keywords" content="Gipson Family, Family Reunion, Gipson Family Reunion, Family Events">
+    <meta name="author" content="Kamirah Motley">
+    <meta property="og:title" content="All About The Gipsons - Family Reunion Website">
+    <meta property="og:description" content="Join us for the Gipson Family Reunion. Explore our family's history, events, and more.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/new_image.jpg') }}">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All About The Gipsons - Family Reunion Website">
+    <meta name="twitter:description" content="Discover the Gipson family's history and join us for our reunion.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/new_image.jpg') }}">
+    <title>{% block title %}Gipswebpage{% endblock %}</title>
+    <style>
     <title>Share News</title>
     <style>
         body {
@@ -115,16 +125,17 @@
     </style>
 </head>
 <body>
-   <nav class="navbar">
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('info') }}">Info</a></li>
-        <li><a href="{{ url_for('news') }}">News</a></li>
-        <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
-        <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
-    </ul>
-</nav>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('info') }}">Info</a></li>
+            <li><a href="{{ url_for('news') }}">News</a></li>
+            <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+            <li><a href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+
+        </ul>
+    </nav>
 
 
     <div class="content">

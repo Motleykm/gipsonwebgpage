@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{% block title %}Gipson Family Webpage{% endblock %}</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All About The Gipsons is the official website for the Gipson family reunion. Discover our history, upcoming events, and family news.">
+    <meta name="keywords" content="Gipson Family, Family Reunion, Gipson Family Reunion, Family Events">
+    <meta name="author" content="Kamirah Motley">
+    <meta property="og:title" content="All About The Gipsons - Family Reunion Website">
+    <meta property="og:description" content="Join us for the Gipson Family Reunion. Explore our family's history, events, and more.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/new_image.jpg') }}">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All About The Gipsons - Family Reunion Website">
+    <meta name="twitter:description" content="Discover the Gipson family's history and join us for our reunion.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/new_image.jpg') }}">
+    <title>{% block title %}All About The Gipsons{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

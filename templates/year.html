@@ -35,13 +35,17 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
-        <div class="collapse navbar-collapse">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('info') }}">Info</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('news') }}">News</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Contacts</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('family_photos_main') }}">Family Photos</a></li>
+                >
             </ul>
             <div class="search-container">
                 <form action="{{ url_for('search') }}" class="form-inline" method="GET">
