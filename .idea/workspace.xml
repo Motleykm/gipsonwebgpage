@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef12c7c1-10fe-4695-95ec-2fe1742e9d9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/images/rsz_4e57ce68-8858-44c7-a0f6-f4751350efb8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/thumbnail.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gipsonwebgpage.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gipsonwebgpage.iml" afterDir="false" />
+    <list default="true" id="ef12c7c1-10fe-4695-95ec-2fe1742e9d9c" name="Changes" comment="final draft of website">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/family_news.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/family_news.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contacts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/family_photos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/family_photos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/year.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/year.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +78,15 @@
       <option name="presentableId" value="Default" />
       <updated>1720480391151</updated>
     </task>
+    <task id="LOCAL-00001" summary="final draft of website">
+      <option name="closed" value="true" />
+      <created>1722570125390</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722570125390</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -101,5 +99,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="final draft of website" />
+    <option name="LAST_COMMIT_MESSAGE" value="final draft of website" />
   </component>
 </project>
