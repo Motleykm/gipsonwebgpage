@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gipson Family Reunion - Home</title>
     <meta name="description" content="Welcome to the Gipson Family Reunion! Join us for a weekend of fun and activities.">
-    <!-- Add other meta tags as needed -->
+    <!-- Styles for the circular navigation menu -->
+    <style>
+        /* General styles for the body */
         body {
             background-image: url('{{ url_for('static', filename='images/converted_image.jpeg') }}');
             background-size: cover;
@@ -22,6 +21,7 @@
             font-family: Arial, sans-serif;
         }
 
+        /* Container for the circular navbar */
         .navbar-container {
             position: relative;
             width: 300px;
@@ -29,6 +29,7 @@
             margin-top: 50px;
         }
 
+        /* Circular navbar styling */
         .navbar {
             position: absolute;
             width: 100%;
@@ -37,8 +38,12 @@
             background: rgba(51, 51, 51, 0.8); /* Semi-transparent dark background */
             transition: transform 0.5s ease-in-out;
             transform: scale(0); /* Start minimized */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
+        /* Navigation items */
         .nav-item {
             position: absolute;
             width: 70px;
@@ -57,21 +62,25 @@
             transform: rotate(calc(360deg / 6 * var(--i))) translate(100px) rotate(calc(-360deg / 6 * var(--i)));
         }
 
+        /* Icon within nav items */
         .nav-item img {
             width: 40px;  /* Adjust size to fit within the circle */
             height: 40px;
             margin-bottom: 5px; /* Space between image and text */
         }
 
+        /* Text within nav items */
         .nav-item span {
             font-size: 12px; /* Ensure text is legible */
             color: white;
         }
 
+        /* Hover effect for nav items */
         .nav-item:hover {
             background-color: #367c39;
         }
 
+        /* Toggle button for navbar */
         #toggle-button {
             position: fixed;
             bottom: 20px;
@@ -81,6 +90,16 @@
             font-size: 16px;
             cursor: pointer;
             z-index: 1000;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect for the toggle button */
+        #toggle-button:hover {
+            background-color: #367c39;
         }
     </style>
 </head>
@@ -89,39 +108,43 @@
     <!-- Default header content -->
     {% endblock %}
 
+    <!-- Navbar container -->
     <div class="navbar-container">
+        <!-- Circular navbar -->
         <div class="navbar" id="navbar">
-            <a class="nav-item" href="/" style="--i:0">
+            <!-- Navigation items with images -->
+            <a class="nav-item" href="/home" style="--i:0">
                 <img src="{{ url_for('static', filename='images/rsz_4e57ce68-8858-44c7-a0f6-f4751350efb8.jpg') }}" alt="Resized Image">
-
                 <span>Home</span>
             </a>
             <a class="nav-item" href="/about" style="--i:1">
-                <img alt="About" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
+                <img src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}" alt="About">
                 <span>About</span>
             </a>
             <a class="nav-item" href="/info" style="--i:2">
-                <img alt="Info" src="{{ url_for('static', filename='images/985F3951-6931-4FD6-8042-52AC0A6945B1_1_201_a.jpeg') }}">
+                <img src="{{ url_for('static', filename='images/985F3951-6931-4FD6-8042-52AC0A6945B1_1_201_a.jpeg') }}" alt="Info">
                 <span>Info</span>
             </a>
             <a class="nav-item" href="/contacts" style="--i:3">
-                <img alt="Contacts" src="{{ url_for('static', filename='images/985F3951-6931-4FD6-8042-52AC0A6945B1_1_201_a.jpeg') }}">
+                <img src="{{ url_for('static', filename='images/985F3951-6931-4FD6-8042-52AC0A6945B1_1_201_a.jpeg') }}" alt="Contacts">
                 <span>Contacts</span>
             </a>
             <a class="nav-item" href="/family_photos_main" style="--i:4">
-                <img alt="Family Photos" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
+                <img src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}" alt="Family Photos">
                 <span>Family Photos</span>
             </a>
             <a class="nav-item" href="/news" style="--i:5">
-                <img alt="News" src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}">
-
+                <img src="{{ url_for('static', filename='images/thumbnail_IMG_4928 (1).JPG') }}" alt="News">
                 <span>News</span>
             </a>
         </div>
     </div>
+
+    <!-- Toggle button -->
     <button id="toggle-button">Toggle Menu</button>
 
     <script>
+        // JavaScript to toggle the navbar
         document.getElementById('toggle-button').addEventListener('click', function() {
             const navbar = document.getElementById('navbar');
 
